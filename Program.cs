@@ -19,7 +19,7 @@ try
         employees_job_schedule_list.Add(employee_job_schedule_entity!);
 
         //Salary Calculator by Employee. Same test I did for Ioet in Python migrated to .NET with C#
-        //Console.WriteLine(String.Format("The amount to pay {0} is: {1} USD", employee_job_schedule_entity!.Name, SalaryCalculator.CalculatePayByEmployee(line)));
+        Console.WriteLine(String.Format("The amount to pay {0} is: {1} USD", employee_job_schedule_entity!.Name, SalaryCalculator.CalculatePayByEmployee(line)));
     }
 
     //Create an IEnumerable to store tuples with pairs of employees of all possible combinations
