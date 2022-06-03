@@ -1,6 +1,6 @@
 # ioet_marin_juan_dot_net
 
-OVERVIEW OF SOLUTION
+OVERVIEW OF SOLUTION:
 My solution solves 2 problems:
 
 * Output a table containing pairs of employees and how often they have coincided in the office. (main excercise)
