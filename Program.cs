@@ -5,8 +5,10 @@ using ioet_marin_juan_dot_net.entities;
 //Calculate pairs of employees have been at the office within the same time frame
 //*******************************************************************************
 
-List<Employee> employees_job_schedule_list = new List<Employee>();
+EmployeesCollection employees_job_schedule_list = new EmployeesCollection();
 string[] week_days = new string[7] { "MO", "TU", "WE", "TH", "FR", "SA", "SU"};
+
+Console.WriteLine("******CALCULATE EMPLOYEE SALARY*********");
 
 try
 {
@@ -16,16 +18,19 @@ try
         Employee? employee_job_schedule_entity = Employee.GetEmployeeInfo(line);
 
         //Add the employee to a list
-        employees_job_schedule_list.Add(employee_job_schedule_entity!);
+        employees_job_schedule_list.AddItem(employee_job_schedule_entity!);
 
         //Salary Calculator by Employee. Same test I did for Ioet in Python migrated to .NET with C#
         Console.WriteLine(String.Format("The amount to pay {0} is: {1} USD", employee_job_schedule_entity!.Name, SalaryCalculator.CalculatePayByEmployee(line)));
     }
+    
+    Console.WriteLine();
+    Console.WriteLine("******CALCULATE EMPLOYEES HAVE COINCIDED IN THE OFFICE IN THE SAME TIME FRAME*********");
 
     //Create an IEnumerable to store tuples with pairs of employees of all possible combinations
-    IEnumerable<Tuple<Employee,Employee>> pairs_employees_job_schedule =    from i in Enumerable.Range(0, employees_job_schedule_list.Count - 1)
-                                                                            from j in Enumerable.Range(i + 1, employees_job_schedule_list.Count - i - 1)
-                                                                            select Tuple.Create(employees_job_schedule_list[i], employees_job_schedule_list[j]);
+    IEnumerable<Tuple<Employee,Employee>> pairs_employees_job_schedule =    from i in Enumerable.Range(0, employees_job_schedule_list.getItems().Count - 1)
+                                                                            from j in Enumerable.Range(i + 1, employees_job_schedule_list.getItems().Count - i - 1)
+                                                                            select Tuple.Create(employees_job_schedule_list.getItems()[i], employees_job_schedule_list.getItems()[j]);
 
     //For each combination from pair of employees compare if they have coincided in the office
     foreach (Tuple<Employee, Employee> employees_job_schedule_tuple in pairs_employees_job_schedule)
